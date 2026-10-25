@@ -65,6 +65,7 @@ var DESIGNS = [
   { id: "synthwave", file: "Synthwave.qml", name: "Synthwave", description: "A grid draws across the screen and dissolves into the clock", tags: ["dark", "fun"], anim: true },
   { id: "etch", file: "Etch.qml", name: "Etch", description: "A laser etches the greeting and time", tags: ["type", "fun"], anim: true },
   { id: "bounce", file: "Bounce.qml", name: "Bounce", description: "The clock rains down as bouncing balls", tags: ["fun", "clock"], anim: true },
+  { id: "bubbles", file: "Bubbles.qml", name: "Bubbles", description: "Your wallpaper with soap bubbles floating over it, bouncing off the edges and each other", tags: ["fun", "reactive"], anim: true },
   { id: "digital", file: "Digital.qml", name: "Digital", description: "Code rain that settles into the clock", tags: ["dark", "fun"], anim: true },
   { id: "spotlight", file: "Spotlight.qml", name: "Spotlight", description: "Spotlights search a dark stage and light up the time", tags: ["dark", "clock"], anim: true },
   { id: "fireworks", file: "Fireworks.qml", name: "Fireworks", description: "Fireworks burst and fall into the clock", tags: ["fun", "clock"], anim: true },

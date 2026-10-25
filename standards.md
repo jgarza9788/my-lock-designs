@@ -136,8 +136,8 @@ locally first.
 
 The benchmark runs without a wallpaper by default. A design that tints, blurs
 or otherwise processes the wallpaper costs more with one, so measure it with
-`BENCH_WALLPAPER=~/Pictures/some.jpg tests/bench-lock-load.sh <id>`. `terminator`
-and `frost` are recorded that way. A wallpaper adds memory (about 60 to 75 MB on a large image), so
+`BENCH_WALLPAPER=~/Pictures/some.jpg tests/bench-lock-load.sh <id>`. `terminator`,
+`frost` and `bubbles` are recorded that way. A wallpaper adds memory (about 60 to 75 MB on a large image), so
 it can come close to the memory limit.
 
 ## What the test checks
@@ -157,9 +157,9 @@ so refresh the CSV whenever a design changes.
 
 ## All designs, ranked
 
-Rank 0 uses the least resources and rank 77 the most. Rank sorts by CPU % plus
+Rank 0 uses the least resources and rank 78 the most. Rank sorts by CPU % plus
 GPU %, then memory, so the 0.0 / 0.0 designs are ordered by memory. The z-scores
-say how far a design sits from the average of the 78, in standard deviations,
+say how far a design sits from the average of the 79, in standard deviations,
 on a log scale: negative is cheaper than average, +1 is the limit's neighbourhood.
 Status is against the limit above. `disabled` designs are not in `Designs.js`.
 
@@ -167,84 +167,85 @@ Regenerate with `python3 tests/bench-table.py` after refreshing the CSV.
 
 | Rank | Design | CPU % | GPU % | MB | CPU z | GPU z | Status |
 |---:|---|---:|---:|---:|---:|---:|---|
-| 0 | classic | 0.0 | 0.0 | 200 | -1.16 | -1.23 | ok |
-| 1 | frame | 0.0 | 0.0 | 202 | -1.16 | -1.23 | ok |
-| 2 | cinema | 0.0 | 0.0 | 203 | -1.16 | -1.23 | ok |
-| 3 | clockwall | 0.0 | 0.0 | 203 | -1.16 | -1.23 | ok |
-| 4 | dock | 0.0 | 0.0 | 204 | -1.16 | -1.23 | ok |
-| 5 | flip | 0.0 | 0.0 | 204 | -1.16 | -1.23 | ok |
-| 6 | system | 0.0 | 0.0 | 204 | -1.16 | -1.23 | ok |
-| 7 | weather | 0.0 | 0.0 | 204 | -1.16 | -1.23 | ok |
-| 8 | wordclock | 0.0 | 0.0 | 206 | -1.16 | -1.23 | ok |
-| 9 | music | 0.0 | 0.0 | 213 | -1.16 | -1.23 | ok |
-| 10 | editorial | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 11 | poster | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 12 | profile | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 13 | sheet | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 14 | split | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 15 | ticket | 0.0 | 0.0 | 214 | -1.16 | -1.23 | ok |
-| 16 | card | 0.0 | 0.0 | 220 | -1.16 | -1.23 | ok |
-| 17 | storm | 0.0 | 0.0 | 242 | -1.16 | -1.23 | ok |
-| 18 | river | 0.0 | 0.0 | 243 | -1.16 | -1.23 | ok |
-| 19 | blueprint | 0.0 | 0.0 | 249 | -1.16 | -1.23 | ok |
-| 20 | neon | 0.0 | 0.0 | 255 | -1.16 | -1.23 | ok |
-| 21 | calendar | 0.1 | 0.0 | 200 | -0.90 | -1.23 | ok |
-| 22 | island | 0.0 | 0.1 | 214 | -1.16 | -0.84 | ok |
-| 23 | meridian | 0.1 | 0.0 | 216 | -0.90 | -1.23 | ok |
-| 24 | motion | 0.1 | 0.0 | 217 | -0.90 | -1.23 | ok |
-| 25 | predator | 0.0 | 0.1 | 219 | -1.16 | -0.84 | ok |
-| 26 | eyes | 0.1 | 0.0 | 243 | -0.90 | -1.23 | ok |
-| 27 | marquee | 0.1 | 0.1 | 247 | -0.90 | -0.84 | ok |
-| 28 | dayline | 0.1 | 0.2 | 203 | -0.90 | -0.61 | ok |
-| 29 | companion | 0.1 | 0.3 | 199 | -0.90 | -0.45 | ok |
-| 30 | ring | 0.1 | 0.3 | 219 | -0.90 | -0.45 | ok |
-| 31 | analog | 0.5 | 0.2 | 225 | -0.48 | -0.61 | ok |
-| 32 | etch | 1.0 | 0.1 | 234 | -0.25 | -0.84 | ok |
-| 33 | ringwordclock | 0.7 | 0.5 | 213 | -0.37 | -0.23 | ok |
-| 34 | terminator | 1.3 | 1.7 | 300 | -0.15 | +0.38 | ok |
-| 35 | pond | 1.2 | 1.9 | 202 | -0.18 | +0.44 | ok |
-| 36 | metro | 3.3 | 0.6 | 236 | +0.18 | -0.14 | ok |
-| 37 | cipher | 5.2 | 1.0 | 222 | +0.35 | +0.11 | ok |
-| 38 | frost | 3.6 | 3.4 | 260 | +0.22 | +0.75 | ok |
-| 39 | terminal | 2.5 | 5.0 | 236 | +0.08 | +0.96 | ok |
-| 40 | zen | 3.0 | 4.9 | 210 | +0.15 | +0.95 | ok |
-| 41 | solclock | 2.2 | 5.8 | 206 | +0.04 | +1.04 | ok |
-| 42 | sparks | 3.3 | 5.0 | 200 | +0.18 | +0.96 | ok |
-| 43 | waves | 3.0 | 5.4 | 210 | +0.15 | +1.01 | ok |
-| 44 | bounce | 7.4 | 1.2 | 241 | +0.49 | +0.20 | ok |
-| 45 | lightspeed | 3.0 | 6.8 | 208 | +0.15 | +1.13 | ok |
-| 46 | receipt | 3.6 | 6.4 | 210 | +0.22 | +1.10 | ok |
-| 47 | mazeclock | 8.4 | 2.5 | 245 | +0.53 | +0.59 | ok |
-| 48 | ember | 9.1 | 2.0 | 220 | +0.56 | +0.47 | ok |
-| 49 | constellation | 6.2 | 5.0 | 210 | +0.42 | +0.96 | ok |
-| 50 | core | 12.8 | 1.2 | 240 | +0.69 | +0.20 | ok |
-| 51 | orbit | 13.2 | 2.4 | 242 | +0.71 | +0.57 | ok |
-| 52 | aurora | 3.7 | 13.5 | 210 | +0.23 | +1.51 | over limit |
-| 53 | vhs | 15.4 | 7.3 | 262 | +0.76 | +1.17 | ok |
-| 54 | horizon | 21.9 | 2.5 | 236 | +0.90 | +0.59 | ok |
-| 55 | login | 23.6 | 3.8 | 233 | +0.93 | +0.81 | ok |
-| 56 | forge | 26.6 | 2.1 | 239 | +0.97 | +0.50 | ok |
-| 57 | mainframe | 27.5 | 2.2 | 239 | +0.98 | +0.52 | ok |
-| 58 | tracking | 30.8 | 1.8 | 238 | +1.03 | +0.41 | ok |
-| 59 | spotlight | 29.1 | 4.0 | 244 | +1.01 | +0.84 | ok |
-| 60 | keycode | 32.3 | 4.1 | 230 | +1.05 | +0.86 | ok |
-| 61 | synthwave | 34.0 | 2.7 | 243 | +1.07 | +0.63 | ok |
-| 62 | supernova | 36.7 | 3.8 | 239 | +1.09 | +0.81 | over limit |
-| 63 | fireworks | 36.2 | 4.3 | 241 | +1.09 | +0.88 | over limit |
-| 64 | panel | 37.7 | 4.5 | 237 | +1.10 | +0.91 | over limit |
-| 65 | beacon | 39.7 | 2.8 | 243 | +1.12 | +0.65 | over limit |
-| 66 | binary | 41.9 | 2.6 | 244 | +1.15 | +0.61 | over limit |
-| 67 | screensaver | 42.5 | 3.8 | 246 | +1.15 | +0.81 | over limit |
-| 68 | rain | 43.2 | 9.7 | 239 | +1.16 | +1.33 | over limit |
-| 69 | circuits | 52.0 | 9.5 | 245 | +1.23 | +1.32 | over limit, disabled |
-| 70 | seismograph | 69.0 | 5.0 | 233 | +1.34 | +0.96 | over limit |
-| 71 | ghosts | 85.3 | 16.8 | 259 | +1.42 | +1.63 | over limit |
-| 72 | bullet | 92.7 | 10.1 | 234 | +1.45 | +1.35 | over limit, disabled |
-| 73 | digital | 120.6 | 6.5 | 249 | +1.55 | +1.11 | over limit |
-| 74 | tracker | 129.3 | 7.1 | 243 | +1.58 | +1.16 | over limit, disabled |
-| 75 | statusline | 140.1 | 5.1 | 264 | +1.61 | +0.97 | over limit |
-| 76 | cobweb | 146.4 | 9.6 | 258 | +1.62 | +1.32 | over limit |
-| 77 | proton | 162.9 | 5.7 | 244 | +1.66 | +1.04 | over limit, disabled |
+| 0 | classic | 0.0 | 0.0 | 200 | -1.17 | -1.24 | ok |
+| 1 | frame | 0.0 | 0.0 | 202 | -1.17 | -1.24 | ok |
+| 2 | cinema | 0.0 | 0.0 | 203 | -1.17 | -1.24 | ok |
+| 3 | clockwall | 0.0 | 0.0 | 203 | -1.17 | -1.24 | ok |
+| 4 | dock | 0.0 | 0.0 | 204 | -1.17 | -1.24 | ok |
+| 5 | flip | 0.0 | 0.0 | 204 | -1.17 | -1.24 | ok |
+| 6 | system | 0.0 | 0.0 | 204 | -1.17 | -1.24 | ok |
+| 7 | weather | 0.0 | 0.0 | 204 | -1.17 | -1.24 | ok |
+| 8 | wordclock | 0.0 | 0.0 | 206 | -1.17 | -1.24 | ok |
+| 9 | music | 0.0 | 0.0 | 213 | -1.17 | -1.24 | ok |
+| 10 | editorial | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 11 | poster | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 12 | profile | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 13 | sheet | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 14 | split | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 15 | ticket | 0.0 | 0.0 | 214 | -1.17 | -1.24 | ok |
+| 16 | card | 0.0 | 0.0 | 220 | -1.17 | -1.24 | ok |
+| 17 | storm | 0.0 | 0.0 | 242 | -1.17 | -1.24 | ok |
+| 18 | river | 0.0 | 0.0 | 243 | -1.17 | -1.24 | ok |
+| 19 | blueprint | 0.0 | 0.0 | 249 | -1.17 | -1.24 | ok |
+| 20 | neon | 0.0 | 0.0 | 255 | -1.17 | -1.24 | ok |
+| 21 | calendar | 0.1 | 0.0 | 200 | -0.91 | -1.24 | ok |
+| 22 | island | 0.0 | 0.1 | 214 | -1.17 | -0.85 | ok |
+| 23 | meridian | 0.1 | 0.0 | 216 | -0.91 | -1.24 | ok |
+| 24 | motion | 0.1 | 0.0 | 217 | -0.91 | -1.24 | ok |
+| 25 | predator | 0.0 | 0.1 | 219 | -1.17 | -0.85 | ok |
+| 26 | eyes | 0.1 | 0.0 | 243 | -0.91 | -1.24 | ok |
+| 27 | marquee | 0.1 | 0.1 | 247 | -0.91 | -0.85 | ok |
+| 28 | dayline | 0.1 | 0.2 | 203 | -0.91 | -0.63 | ok |
+| 29 | companion | 0.1 | 0.3 | 199 | -0.91 | -0.47 | ok |
+| 30 | ring | 0.1 | 0.3 | 219 | -0.91 | -0.47 | ok |
+| 31 | analog | 0.5 | 0.2 | 225 | -0.49 | -0.63 | ok |
+| 32 | etch | 1.0 | 0.1 | 234 | -0.25 | -0.85 | ok |
+| 33 | ringwordclock | 0.7 | 0.5 | 213 | -0.38 | -0.24 | ok |
+| 34 | terminator | 1.3 | 1.7 | 300 | -0.16 | +0.37 | ok |
+| 35 | pond | 1.2 | 1.9 | 202 | -0.19 | +0.43 | ok |
+| 36 | metro | 3.3 | 0.6 | 236 | +0.18 | -0.16 | ok |
+| 37 | cipher | 5.2 | 1.0 | 222 | +0.35 | +0.10 | ok |
+| 38 | frost | 3.6 | 3.4 | 260 | +0.21 | +0.74 | ok |
+| 39 | terminal | 2.5 | 5.0 | 236 | +0.08 | +0.95 | ok |
+| 40 | zen | 3.0 | 4.9 | 210 | +0.15 | +0.94 | ok |
+| 41 | solclock | 2.2 | 5.8 | 206 | +0.03 | +1.03 | ok |
+| 42 | sparks | 3.3 | 5.0 | 200 | +0.18 | +0.95 | ok |
+| 43 | waves | 3.0 | 5.4 | 210 | +0.15 | +0.99 | ok |
+| 44 | bounce | 7.4 | 1.2 | 241 | +0.48 | +0.19 | ok |
+| 45 | lightspeed | 3.0 | 6.8 | 208 | +0.15 | +1.12 | ok |
+| 46 | receipt | 3.6 | 6.4 | 210 | +0.21 | +1.09 | ok |
+| 47 | mazeclock | 8.4 | 2.5 | 245 | +0.53 | +0.58 | ok |
+| 48 | bubbles | 5.7 | 5.3 | 264 | +0.39 | +0.98 | ok |
+| 49 | ember | 9.1 | 2.0 | 220 | +0.56 | +0.46 | ok |
+| 50 | constellation | 6.2 | 5.0 | 210 | +0.42 | +0.95 | ok |
+| 51 | core | 12.8 | 1.2 | 240 | +0.69 | +0.19 | ok |
+| 52 | orbit | 13.2 | 2.4 | 242 | +0.70 | +0.55 | ok |
+| 53 | aurora | 3.7 | 13.5 | 210 | +0.22 | +1.50 | over limit |
+| 54 | vhs | 15.4 | 7.3 | 262 | +0.76 | +1.16 | ok |
+| 55 | horizon | 21.9 | 2.5 | 236 | +0.90 | +0.58 | ok |
+| 56 | login | 23.6 | 3.8 | 233 | +0.93 | +0.80 | ok |
+| 57 | forge | 26.6 | 2.1 | 239 | +0.97 | +0.48 | ok |
+| 58 | mainframe | 27.5 | 2.2 | 239 | +0.99 | +0.51 | ok |
+| 59 | tracking | 30.8 | 1.8 | 238 | +1.03 | +0.40 | ok |
+| 60 | spotlight | 29.1 | 4.0 | 244 | +1.01 | +0.83 | ok |
+| 61 | keycode | 32.3 | 4.1 | 230 | +1.05 | +0.84 | ok |
+| 62 | synthwave | 34.0 | 2.7 | 243 | +1.07 | +0.62 | ok |
+| 63 | supernova | 36.7 | 3.8 | 239 | +1.10 | +0.80 | over limit |
+| 64 | fireworks | 36.2 | 4.3 | 241 | +1.09 | +0.87 | over limit |
+| 65 | panel | 37.7 | 4.5 | 237 | +1.11 | +0.89 | over limit |
+| 66 | beacon | 39.7 | 2.8 | 243 | +1.13 | +0.64 | over limit |
+| 67 | binary | 41.9 | 2.6 | 244 | +1.15 | +0.60 | over limit |
+| 68 | screensaver | 42.5 | 3.8 | 246 | +1.15 | +0.80 | over limit |
+| 69 | rain | 43.2 | 9.7 | 239 | +1.16 | +1.32 | over limit |
+| 70 | circuits | 52.0 | 9.5 | 245 | +1.23 | +1.30 | over limit, disabled |
+| 71 | seismograph | 69.0 | 5.0 | 233 | +1.34 | +0.95 | over limit |
+| 72 | ghosts | 85.3 | 16.8 | 259 | +1.42 | +1.62 | over limit |
+| 73 | bullet | 92.7 | 10.1 | 234 | +1.45 | +1.34 | over limit, disabled |
+| 74 | digital | 120.6 | 6.5 | 249 | +1.55 | +1.09 | over limit |
+| 75 | tracker | 129.3 | 7.1 | 243 | +1.58 | +1.14 | over limit, disabled |
+| 76 | statusline | 140.1 | 5.1 | 264 | +1.61 | +0.96 | over limit |
+| 77 | cobweb | 146.4 | 9.6 | 258 | +1.63 | +1.31 | over limit |
+| 78 | proton | 162.9 | 5.7 | 244 | +1.67 | +1.02 | over limit, disabled |
 
 ## Known offenders
 
