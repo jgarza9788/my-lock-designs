@@ -44,6 +44,12 @@ On a log scale it is close to one. Each dot is a design, sitting on the fitted
 curve at its measured value (orange are the newest designs, red are over the
 limit). Regenerate with `python3 tests/bench-curves.py`.
 
+For an interactive view, open `tests/bench-results/full-1080p-report.html` in
+a browser: CPU against GPU with the budgets drawn in, the spread in the bins
+above, and every design ranked, with a picker to see where any one design
+stands. Every benchmark run writes one next to its CSV; to rebuild one, run
+`python3 tests/bench-report.py <results.csv>` (no dependencies).
+
 ![CPU and GPU bell curves with every design plotted](tests/bench-results/curves.png)
 
 On a plain scale it is not a bell curve. CPU splits into two groups: designs that draw nothing
@@ -131,7 +137,7 @@ locally first.
 The benchmark runs without a wallpaper by default. A design that tints, blurs
 or otherwise processes the wallpaper costs more with one, so measure it with
 `BENCH_WALLPAPER=~/Pictures/some.jpg tests/bench-lock-load.sh <id>`. `terminator`
-is recorded that way. A wallpaper adds memory (about 60 to 75 MB on a large image), so
+and `frost` are recorded that way. A wallpaper adds memory (about 60 to 75 MB on a large image), so
 it can come close to the memory limit.
 
 ## What the test checks
@@ -199,10 +205,10 @@ Regenerate with `python3 tests/bench-table.py` after refreshing the CSV.
 | 35 | pond | 1.2 | 1.9 | 202 | -0.18 | +0.44 | ok |
 | 36 | metro | 3.3 | 0.6 | 236 | +0.18 | -0.14 | ok |
 | 37 | cipher | 5.2 | 1.0 | 222 | +0.35 | +0.11 | ok |
-| 38 | frost | 3.9 | 3.3 | 210 | +0.25 | +0.74 | ok |
+| 38 | frost | 3.6 | 3.4 | 260 | +0.22 | +0.75 | ok |
 | 39 | terminal | 2.5 | 5.0 | 236 | +0.08 | +0.96 | ok |
 | 40 | zen | 3.0 | 4.9 | 210 | +0.15 | +0.95 | ok |
-| 41 | solclock | 2.2 | 5.8 | 206 | +0.03 | +1.05 | ok |
+| 41 | solclock | 2.2 | 5.8 | 206 | +0.04 | +1.04 | ok |
 | 42 | sparks | 3.3 | 5.0 | 200 | +0.18 | +0.96 | ok |
 | 43 | waves | 3.0 | 5.4 | 210 | +0.15 | +1.01 | ok |
 | 44 | bounce | 7.4 | 1.2 | 241 | +0.49 | +0.20 | ok |
@@ -227,15 +233,15 @@ Regenerate with `python3 tests/bench-table.py` after refreshing the CSV.
 | 63 | fireworks | 36.2 | 4.3 | 241 | +1.09 | +0.88 | over limit |
 | 64 | panel | 37.7 | 4.5 | 237 | +1.10 | +0.91 | over limit |
 | 65 | beacon | 39.7 | 2.8 | 243 | +1.12 | +0.65 | over limit |
-| 66 | binary | 41.9 | 2.6 | 244 | +1.14 | +0.61 | over limit |
+| 66 | binary | 41.9 | 2.6 | 244 | +1.15 | +0.61 | over limit |
 | 67 | screensaver | 42.5 | 3.8 | 246 | +1.15 | +0.81 | over limit |
 | 68 | rain | 43.2 | 9.7 | 239 | +1.16 | +1.33 | over limit |
 | 69 | circuits | 52.0 | 9.5 | 245 | +1.23 | +1.32 | over limit, disabled |
-| 70 | seismograph | 69.0 | 5.0 | 233 | +1.33 | +0.96 | over limit |
+| 70 | seismograph | 69.0 | 5.0 | 233 | +1.34 | +0.96 | over limit |
 | 71 | ghosts | 85.3 | 16.8 | 259 | +1.42 | +1.63 | over limit |
 | 72 | bullet | 92.7 | 10.1 | 234 | +1.45 | +1.35 | over limit, disabled |
 | 73 | digital | 120.6 | 6.5 | 249 | +1.55 | +1.11 | over limit |
-| 74 | tracker | 129.3 | 7.1 | 243 | +1.57 | +1.16 | over limit, disabled |
+| 74 | tracker | 129.3 | 7.1 | 243 | +1.58 | +1.16 | over limit, disabled |
 | 75 | statusline | 140.1 | 5.1 | 264 | +1.61 | +0.97 | over limit |
 | 76 | cobweb | 146.4 | 9.6 | 258 | +1.62 | +1.32 | over limit |
 | 77 | proton | 162.9 | 5.7 | 244 | +1.66 | +1.04 | over limit, disabled |

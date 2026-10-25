@@ -81,15 +81,18 @@ DesignBase {
     refreeze.restart()
   }
 
+  // Started by keys, but held while the display is off like everything else.
   NumberAnimation {
     id: breathUp
     target: lock; property: "breath"; to: 1
     duration: 700; easing.type: Easing.OutCubic
+    paused: running && !lock.animating
   }
   NumberAnimation {
     id: breathDown
     target: lock; property: "breath"; to: 0
     duration: lock.refreezeDuration; easing.type: Easing.InOutSine
+    paused: running && !lock.animating
   }
   Timer {
     id: refreeze

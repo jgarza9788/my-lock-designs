@@ -5,7 +5,8 @@
 # a warm-up the script samples that process for a while: CPU from
 # /proc/<pid>/stat, GPU from the DRM engine time in /proc/<pid>/fdinfo (i915,
 # xe and amdgpu report it per process, no root needed). Results print as a
-# table, busiest first, and land in a CSV.
+# table, busiest first, and land in a CSV, with an interactive report of the
+# same results next to it (<name>-report.html, see tests/bench-report.py).
 #
 #   tests/bench-lock-load.sh                    # every design
 #   tests/bench-lock-load.sh neon rain card     # just these ids
@@ -92,3 +93,8 @@ tail -n +2 "$OUT" | awk -F, '{printf "%s,%s,%s,%s,%.1f\n", $1, $2, $3, $4, $2 + 
   | awk -F, '{printf "%-16s %8s %8s %8s\n", $1, $2, $3, $4}' | head -15
 echo
 echo "Full results: $OUT"
+
+# The interactive report for this run, next to the CSV (see tests/bench-report.py).
+if command -v python3 >/dev/null; then
+  python3 "$root/tests/bench-report.py" "$OUT" || echo "Could not build the report (see tests/bench-report.py)" >&2
+fi
