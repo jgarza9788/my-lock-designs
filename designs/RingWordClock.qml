@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // The time in words on turning rings. Hours, minutes and seconds each have a
 // ring of number words, set out like the spokes of a wheel. Every ring turns so
@@ -66,8 +67,8 @@ DesignBase {
   property bool boldCurrent: true
 
   // ---- Colors and motion ------------------------------------------------
-  property color currentColor: Color.lock.text
-  property color otherColor: Color.lock.text
+  property color currentColor: Commons.Color.lock.text
+  property color otherColor: Commons.Color.lock.text
   // How long a ring takes to turn to the next word, in milliseconds.
   property int turnDuration: 900
 
@@ -143,7 +144,7 @@ DesignBase {
   Behavior on secondsStart { NumberAnimation { duration: lock.turnDuration; easing.type: Easing.InOutCubic } }
   Behavior on suffixStart { NumberAnimation { duration: lock.turnDuration; easing.type: Easing.InOutCubic } }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   MouseArea {
     anchors.fill: parent
@@ -243,7 +244,7 @@ DesignBase {
     anchors.bottomMargin: 40
     opacity: lock.snapshotMode ? 0 : 1
     text: lock.date("dddd, d MMMM")
-    color: lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.heading
     font.letterSpacing: 2
@@ -259,7 +260,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.7)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -272,7 +273,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.55)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.55)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // The jump to lightspeed. Stars stream out from the middle of the screen and
 // stretch into streaks as the ship speeds up. Every keystroke is a burst of
@@ -11,7 +12,7 @@ DesignBase {
   // 0 is a slow cruise, 1 is the stars fully stretched.
   property real boost: 0
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   // How fast the ship is going, and how far it has gone. The stars themselves
   // are drawn by a shader (shaders/lightspeed.frag) from these two numbers, so
@@ -36,8 +37,8 @@ DesignBase {
     property real speed: lock.speed
     property real pad: 0
     property vector2d viewSize: Qt.vector2d(width, height)
-    property color base: Color.lock.text
-    property color accent: Color.lock.borderActive
+    property color base: Commons.Color.lock.text
+    property color accent: Commons.Color.lock.borderActive
     fragmentShader: Qt.resolvedUrl("shaders/lightspeed.frag.qsb")
     blending: true
     // Drawn into a half size texture and scaled up: a quarter of the pixels
@@ -55,7 +56,7 @@ DesignBase {
     radius: width / 2
     opacity: 0.05 + lock.boost * 0.2
     gradient: Gradient {
-      GradientStop { position: 0; color: Color.lock.borderActive }
+      GradientStop { position: 0; color: Commons.Color.lock.borderActive }
       GradientStop { position: 1; color: "transparent" }
     }
   }
@@ -91,7 +92,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.clock("HH:mm")
-      color: Color.lock.text
+      color: Commons.Color.lock.text
       font.family: Style.font.family
       font.pixelSize: Math.round(Style.font.baseSize * 9)
       font.weight: Font.Light
@@ -100,7 +101,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.date("dddd, d MMMM")
-      color: lock.withAlpha(Color.lock.text, 0.7)
+      color: lock.withAlpha(Commons.Color.lock.text, 0.7)
       font.family: Style.font.family
       font.pixelSize: Style.font.heading
       font.letterSpacing: 2
@@ -117,7 +118,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -130,7 +131,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.45)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.45)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

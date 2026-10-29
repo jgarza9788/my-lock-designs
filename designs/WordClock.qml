@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // The time in words: a grid of letters that lights up "IT IS HALF PAST TEN".
 // Four dots in the corners count the minutes between the five-minute marks.
@@ -30,15 +31,15 @@ DesignBase {
 
   // ---- Colors and fading ----------------------------------------------
   // Letters that are part of the time, and the rest of them.
-  property color litColor: Color.lock.text
-  property color dimColor: Color.lock.text
+  property color litColor: Commons.Color.lock.text
+  property color dimColor: Commons.Color.lock.text
   property real litOpacity: 1.0
   property real dimOpacity: 0.10
   // How long a letter takes to light or go dark, in milliseconds.
   property int fadeDuration: 700
   // The four minute dots (0..4 of them are lit).
   property bool showMinuteDots: true
-  property color dotColor: Color.lock.borderActive
+  property color dotColor: Commons.Color.lock.borderActive
   property real dotOpacityOff: 0.15
 
   // ---- Grid -----------------------------------------------------------
@@ -106,7 +107,7 @@ DesignBase {
 
   readonly property real cell: Math.min(lock.width * gridWidthShare / 11, lock.height * 0.5 / 10)
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   MouseArea {
     anchors.fill: parent
@@ -166,7 +167,7 @@ DesignBase {
     y: grid.y + grid.height + lock.cell * 1.1
     opacity: lock.snapshotMode ? 0 : 1
     text: lock.date("dddd, d MMMM")
-    color: lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.heading
     font.letterSpacing: 2
@@ -182,7 +183,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -195,7 +196,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.55)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.55)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

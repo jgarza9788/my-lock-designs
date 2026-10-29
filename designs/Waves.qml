@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // Slow silk ribbons drifting over a gradient, in the theme's colors. Typing
 // makes them swell and pick up speed. The ribbons are drawn by a shader
@@ -33,7 +34,7 @@ DesignBase {
 
   // ---- Colors ---------------------------------------------------------
   // The ribbons and glow start from this color, the theme's accent.
-  property color accentColor: Color.lock.borderActive
+  property color accentColor: Commons.Color.lock.borderActive
   // The ribbons use three colors. The first is the accent; the other two are
   // the accent turned around the color wheel by these amounts (0..1, where
   // 1 is a full turn).
@@ -48,7 +49,7 @@ DesignBase {
   property color ribbonColor3: Qt.hsla((accentColor.hslHue + thirdColorHueShift) % 1, Math.max(minimumSaturation, accentColor.hslSaturation), 0.45, 1)
 
   // ---- Background -----------------------------------------------------
-  property color backgroundTop: Color.background
+  property color backgroundTop: Commons.Color.background
   // How much of the accent color the bottom of the screen (0 keeps it the
   // same as the top, 1 makes it the full accent).
   property real backgroundAccent: 0.4
@@ -115,7 +116,7 @@ DesignBase {
   property real time: 0
   property real energy: 0
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   Timer {
     interval: Math.round(1000 / Math.max(1, Math.min(lock.maxFramesPerSecond, lock.framesPerSecond * (1 + lock.energy * lock.typingSpeedUp))))
@@ -194,7 +195,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.clock("HH:mm")
-      color: Color.lock.text
+      color: Commons.Color.lock.text
       font.family: Style.font.family
       font.pixelSize: Math.round(Style.font.baseSize * 9)
       font.weight: Font.Light
@@ -203,7 +204,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.date("dddd, d MMMM")
-      color: lock.withAlpha(Color.lock.text, 0.75)
+      color: lock.withAlpha(Commons.Color.lock.text, 0.75)
       font.family: Style.font.family
       font.pixelSize: Style.font.heading
       font.letterSpacing: 2
@@ -220,7 +221,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -233,7 +234,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.55)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.55)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

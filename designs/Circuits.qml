@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // Time circuits. Red is where you are going, green is where you are and amber
 // is where you were. Every key you type sets a new destination and gets the
@@ -38,7 +39,7 @@ DesignBase {
 
   readonly property color mphColor: lock.mph >= 80 ? lock.red : (lock.mph >= 50 ? lock.amber : lock.green)
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   // One readout row: a label above a plate holding the lit digits over a
   // faint grid of unlit ones.
@@ -59,7 +60,7 @@ DesignBase {
       id: caption
       anchors.horizontalCenter: parent.horizontalCenter
       text: readout.label
-      color: lock.withAlpha(Color.lock.text, 0.6)
+      color: lock.withAlpha(Commons.Color.lock.text, 0.6)
       font.family: Style.font.family
       font.pixelSize: Style.font.caption
       font.letterSpacing: 3
@@ -73,7 +74,7 @@ DesignBase {
       radius: 6
       color: "#0b0b0b"
       border.width: 2
-      border.color: lock.withAlpha(Color.lock.text, 0.25)
+      border.color: lock.withAlpha(Commons.Color.lock.text, 0.25)
 
       Row {
         id: row
@@ -158,7 +159,7 @@ DesignBase {
     onPaint: {
       var ctx = getContext("2d")
       ctx.clearRect(0, 0, width, height)
-      var c = Color.lock.borderActive
+      var c = Commons.Color.lock.borderActive
       var y0 = height - 3
       ctx.lineWidth = 1.5
       var level = lock.mph / 88
@@ -334,7 +335,7 @@ DesignBase {
         Text {
           anchors.verticalCenter: parent.verticalCenter
           text: "MPH"
-          color: lock.withAlpha(Color.lock.text, 0.6)
+          color: lock.withAlpha(Commons.Color.lock.text, 0.6)
           font.family: Style.font.family
           font.pixelSize: Style.font.heading
           font.letterSpacing: 3
@@ -348,7 +349,7 @@ DesignBase {
               width: 6
               height: 8 + (index % 5 === 4 ? 14 : 0)
               anchors.bottom: parent.bottom
-              color: index < Math.round(lock.mph / 4) ? (index > 18 ? lock.red : (index > 12 ? lock.amber : lock.green)) : lock.withAlpha(Color.lock.text, 0.15)
+              color: index < Math.round(lock.mph / 4) ? (index > 18 ? lock.red : (index > 12 ? lock.amber : lock.green)) : lock.withAlpha(Commons.Color.lock.text, 0.15)
             }
           }
         }
@@ -366,7 +367,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -379,7 +380,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.45)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.45)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

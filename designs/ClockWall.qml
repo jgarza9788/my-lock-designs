@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // A clock made of clocks: 24 small analog clocks whose hands line up to draw
 // the digits of the time, and turn to the next ones when the minute changes.
@@ -40,10 +41,10 @@ DesignBase {
   property int turnDuration: 900
 
   // ---- Colors ---------------------------------------------------------
-  property color handColor: Color.lock.text
-  property color faceColor: Color.lock.text
+  property color handColor: Commons.Color.lock.text
+  property color faceColor: Commons.Color.lock.text
   // The two dots of the colon.
-  property color colonColor: Color.lock.borderActive
+  property color colonColor: Commons.Color.lock.borderActive
 
   // ---- Digits ---------------------------------------------------------
   // Each digit is 2 clocks wide and 3 tall. A cell is two letters, one per
@@ -73,7 +74,7 @@ DesignBase {
     return letter === "R" ? 0 : letter === "D" ? 90 : letter === "L" ? 180 : letter === "U" ? 270 : idleAngle
   }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   MouseArea {
     anchors.fill: parent
@@ -159,7 +160,7 @@ DesignBase {
     y: wall.y + wall.height + lock.cell * 0.4
     opacity: lock.snapshotMode ? 0 : 1
     text: lock.date("dddd, d MMMM")
-    color: lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.heading
     font.letterSpacing: 2
@@ -175,7 +176,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -188,7 +189,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.55)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.55)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

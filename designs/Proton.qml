@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // Two proton streams from the bottom corners, each a pair of strands twisting
 // round each other, meeting in a white hot knot that throws sparks and arcs.
@@ -14,7 +15,7 @@ DesignBase {
   // Whole screen flash on an overload.
   property real flash: 0
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   Canvas {
     id: beams
@@ -95,7 +96,7 @@ DesignBase {
       ctx.clearRect(0, 0, width, height)
       ctx.lineCap = "round"
       ctx.lineJoin = "round"
-      var a = Color.lock.borderActive
+      var a = Commons.Color.lock.borderActive
       var b = Qt.hsla((a.hslHue + 0.08) % 1, Math.max(0.7, a.hslSaturation), 0.6, 1)
 
       kx = width * (0.5 + Math.sin(t * 0.5) * 0.14 + Math.sin(t * 1.7) * 0.04 * (1 + drive * 2))
@@ -213,7 +214,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.clock("HH:mm")
-      color: Color.lock.text
+      color: Commons.Color.lock.text
       font.family: Style.font.family
       font.pixelSize: Math.round(Style.font.baseSize * 9)
       font.weight: Font.Light
@@ -222,7 +223,7 @@ DesignBase {
     Text {
       anchors.horizontalCenter: parent.horizontalCenter
       text: lock.date("dddd, d MMMM")
-      color: lock.withAlpha(Color.lock.text, 0.7)
+      color: lock.withAlpha(Commons.Color.lock.text, 0.7)
       font.family: Style.font.family
       font.pixelSize: Style.font.heading
       font.letterSpacing: 2
@@ -239,7 +240,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.55)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.55)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -252,7 +253,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.45)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.45)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import Quickshell.Io
 import qs.Commons
+import qs.Commons as Commons
 
 // A machine's view of the lock screen. Your wallpaper, tinted red and darkened,
 // under a grid, with this machine's specs in big white readout and a target box
@@ -38,7 +39,7 @@ DesignBase {
     return "monospace"
   }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   NumberAnimation {
     id: denyFade
@@ -716,7 +717,7 @@ DesignBase {
     height: 52
     radius: 2
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.7)
     placeholder: lock.tr("ENTER PASSWORD")
   }
 
@@ -728,7 +729,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : "white"
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : "white"
     font.family: lock.face
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

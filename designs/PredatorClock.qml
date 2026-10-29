@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Shapes
 import qs.Commons
+import qs.Commons as Commons
 
 // A clock in glyphs, like the alien countdown in the Predator films: four
 // figures, each a little body of bars, some lit and some dark, glowing red. The
@@ -68,8 +69,8 @@ DesignBase {
 
   // ---- Colors ---------------------------------------------------------
   // Lit bars, the dark bars and their outline. These are the film's red. To
-  // follow the theme instead, set litColor to Color.lock.borderActive or
-  // Color.lock.textError and unlitColor to Qt.darker(litColor, 2.5).
+  // follow the theme instead, set litColor to Commons.Color.lock.borderActive or
+  // Commons.Color.lock.textError and unlitColor to Qt.darker(litColor, 2.5).
   property color litColor: Qt.rgba(1, 0.05, 0.05, 1)
   property color unlitColor: Qt.rgba(0.36, 0.03, 0.024, 1)
   property color outlineColor: Qt.rgba(0.73, 0.03, 0.02, 1)
@@ -115,7 +116,7 @@ DesignBase {
     return [d >= 5, d % 3 === 0, d % 3 === 1, (d & 8) !== 0, (d & 4) !== 0, (d & 2) !== 0, (d & 1) !== 0, d % 2 === 0, d % 2 === 1]
   }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   NumberAnimation {
     id: settle
@@ -275,7 +276,7 @@ DesignBase {
     height: 52
     radius: 26
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.85)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.85)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -288,7 +289,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

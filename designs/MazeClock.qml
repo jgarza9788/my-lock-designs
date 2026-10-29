@@ -1,5 +1,6 @@
 import QtQuick
 import qs.Commons
+import qs.Commons as Commons
 
 // A maze that builds itself and then solves itself, over and over, with the time
 // in a box in the middle of it. The idea is the "ScreenMazer" macOS
@@ -40,9 +41,9 @@ DesignBase {
   // ---- Colors ---------------------------------------------------------
   // The walls (the theme's accent, darkened), the corridors the search has been
   // down, the way it finally found, and the box and digits of the clock.
-  property color wallColor: Qt.darker(Color.lock.borderActive, 1.5)
-  property color searchColor: Qt.lighter(Color.lock.borderActive, 1.3)
-  property color pathColor: Qt.lighter(Color.lock.borderActive, 1.9)
+  property color wallColor: Qt.darker(Commons.Color.lock.borderActive, 1.5)
+  property color searchColor: Qt.lighter(Commons.Color.lock.borderActive, 1.3)
+  property color pathColor: Qt.lighter(Commons.Color.lock.borderActive, 1.9)
   property color clockColor: wallColor
   property color boxColor: wallColor
 
@@ -262,7 +263,7 @@ DesignBase {
     }
   }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   Timer {
     interval: Math.round(1000 / Math.max(1, lock.stepsPerSecond))
@@ -318,7 +319,7 @@ DesignBase {
       for (var c = 0; c < groups.length; c++) {
         var g = groups[c]
         if (g.length === 0) continue
-        ctx.fillStyle = c === 0 ? Color.background : lock.palette[c]
+        ctx.fillStyle = c === 0 ? Commons.Color.background : lock.palette[c]
         ctx.beginPath()
         for (var j = 0; j < g.length; j += 2) ctx.rect(g[j], g[j + 1], b, b)
         ctx.fill()
@@ -350,7 +351,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.8)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.8)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -363,7 +364,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2

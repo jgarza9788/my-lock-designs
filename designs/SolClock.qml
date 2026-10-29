@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Effects
 import qs.Commons
+import qs.Commons as Commons
 
 // The time in the middle of the screen, over thin concentric rings in the
 // theme's accent color on its background. The rings are centred on a sun that
@@ -96,8 +97,8 @@ DesignBase {
   // ---- Colors ---------------------------------------------------------
   // The rings, the sun and the digits are drawn in this color (the theme's
   // accent), and everything between them in the other (the theme's background).
-  property color lineColor: Color.lock.borderActive
-  property color gapColor: Color.background
+  property color lineColor: Commons.Color.lock.borderActive
+  property color gapColor: Commons.Color.background
   // The rings far from the sun fade to this color, a dimmer accent, over farDistance
   // (a percent of the shorter side of the screen). Set farColor to lineColor to
   // keep every ring the same.
@@ -132,7 +133,7 @@ DesignBase {
   // The pulse colors: for a key (the line color by default, a touch lighter) and
   // for a wrong password.
   property color pulseColor: Qt.lighter(lineColor, 1.3)
-  property color errorPulseColor: Color.lock.textError
+  property color errorPulseColor: Commons.Color.lock.textError
 
   // ---- Driven by the design; do not set --------------------------------
   // How far through the orbit the sun is, 0..1.
@@ -179,7 +180,7 @@ DesignBase {
     dayFraction = (seconds / (orbitHours * 3600)) % 1
   }
 
-  Rectangle { anchors.fill: parent; color: Color.background }
+  Rectangle { anchors.fill: parent; color: Commons.Color.background }
 
   Timer {
     interval: Math.max(1, lock.updateSeconds) * 1000
@@ -381,7 +382,7 @@ DesignBase {
     height: 56
     radius: 28
     showLockGlyph: false
-    color: lock.withAlpha(Color.lock.background, 0.7)
+    color: lock.withAlpha(Commons.Color.lock.background, 0.7)
     placeholder: lock.greeting() + ", " + lock.displayName
   }
 
@@ -394,7 +395,7 @@ DesignBase {
       ? lock.tr(lock.failedAttempts === 1 ? "1 failed attempt" : "%1 failed attempts").arg(lock.failedAttempts)
       : (lock.fingerprintConfigured ? lock.fingerprintHint(lock.tr("Touch the sensor or press Enter")) : lock.tr("Press Enter to unlock"))
     textFormat: Text.PlainText
-    color: lock.failedAttempts > 0 ? Color.lock.textError : lock.withAlpha(Color.lock.text, 0.7)
+    color: lock.failedAttempts > 0 ? Commons.Color.lock.textError : lock.withAlpha(Commons.Color.lock.text, 0.7)
     font.family: Style.font.family
     font.pixelSize: Style.font.bodySmall
     font.letterSpacing: 2
